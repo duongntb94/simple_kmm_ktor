@@ -36,6 +36,37 @@ For more detail, please access this link: https://kotlinlang.org/docs/kmm-setup.
 
 ![](screenshot_1.png)
 
+## Courotine
+The application use Courotine for asynchronous functions and multithreading. Here is an sample:
+
+```kotlin
+GlobalScope.async {
+  val urlString1 = "http://itunes.apple.com/search?term=a&entity=song";
+  val urlString2 = "http://itunes.apple.com/search?term=b&entity=song";
+
+  val request1: Deferred<HttpResponse> = async { httpClient.get(urlString1) }
+  val request2: Deferred<HttpResponse> = async { httpClient.get(urlString2) }
+
+  // Parallel requests
+  val response1: HttpResponse = request1.await();
+  val response2: HttpResponse = request2.await();
+
+  val text1: String = response1.readText();
+  val text2: String = response2.readText();
+
+  val jsonSerialzer =  Json { ignoreUnknownKeys = true }
+
+  val result1: ResultCollection =
+                jsonSerialzer.decodeFromString(text1);
+  val result2: ResultCollection =
+                jsonSerialzer.decodeFromString(text2);
+  return@async ResultCollection(
+                result1.resultCount + result2.resultCount,
+                result1.results + result2.results
+  );
+}
+```
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details
