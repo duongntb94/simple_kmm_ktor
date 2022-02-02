@@ -6,8 +6,6 @@ import android.widget.TextView
 import com.duongntb94.kmmnetwork.stores.ItunesStore
 
 class MainActivity : AppCompatActivity() {
-    val store: ItunesStore = ItunesStore()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

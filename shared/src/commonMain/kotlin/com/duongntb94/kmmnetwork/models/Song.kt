@@ -1,45 +1,20 @@
 package com.duongntb94.kmmnetwork.models
 
+import com.duongntb94.database.DBSong
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Song (
-    val wrapperType: String,
-    val kind: String,
-    val artistId: Long,
-    val collectionId: Long,
     val trackId: Long,
     val artistName: String,
-    val collectionName: String,
     val trackName: String,
-    val collectionCensoredName: String,
-    val trackCensoredName: String,
-    val artistViewUrl: String,
-    val collectionViewUrl: String,
-    val trackViewUrl: String,
-    val previewUrl: String,
-    val artworkUrl30: String,
-    val artworkUrl60: String,
-    val artworkUrl100: String,
-    val collectionPrice: Double,
-    val trackPrice: Double,
-    val releaseDate: String,
-    val collectionExplicitness: String,
-    val trackExplicitness: String,
-    val discCount: Long,
-    val discNumber: Long,
-    val trackCount: Long,
-    val trackNumber: Long,
-    val trackTimeMillis: Long,
-    val country: String,
-    val currency: String,
-    val primaryGenreName: String,
-    val isStreamable: Boolean,
-    val contentAdvisoryRating: String? = null,
-    val collectionArtistName: String? = null,
-    val collectionArtistID: Long? = null,
-    val collectionArtistViewURL: String? = null
+    val artworkUrl100: String
 ) {
+    companion object {
+        fun instanceFromDBSong(dbSong: DBSong): Song {
+            return Song(dbSong.trackId, dbSong.artistName, dbSong.trackName, dbSong.artworkUrl100);
+        }
+    }
     override fun toString(): String {
         return "ID: $trackId - name: $trackName - Artist name: $artistName"
     }

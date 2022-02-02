@@ -28,8 +28,8 @@ class ItunesServiceImpl : ItunesService {
 
     override suspend fun getParallelResultCollection(): ResultCollection {
         val request: Deferred<ResultCollection> = GlobalScope.async {
-            val urlString1 = "http://itunes.apple.com/search?term=you&entity=song";
-            val urlString2 = "http://itunes.apple.com/search?term=me&entity=song";
+            val urlString1 = "http://itunes.apple.com/search?term=a&entity=song";
+            val urlString2 = "http://itunes.apple.com/search?term=b&entity=song";
 
             val request1: Deferred<HttpResponse> = async { httpClient.get(urlString1) }
             val request2: Deferred<HttpResponse> = async { httpClient.get(urlString2) }

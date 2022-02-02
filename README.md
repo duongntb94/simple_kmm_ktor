@@ -1,7 +1,7 @@
-# Kotlin Multiple Platform Mobile + Ktor (iOS Only)
+# Kotlin Multiple Platform Mobile + Ktor + Coroutine + SqlDelight (iOS Only)
 
 <p align="center">
-  <img src="screenshot_2.png" height="300" />
+  <img src="cache_no_cache_demo.gif" height="400" />
 </p>
 
 A cross platform application which written by Kotlin Multiplatform Mobile using Kotlin for shared features. Swift for iOS specific features, and Kotlin for Android specific features.
@@ -20,6 +20,12 @@ These instructions will get you building and running the project on your local m
 - Kotlin Multiplatform Mobile (in Android Studio)
 
 For more detail, please access this link: https://kotlinlang.org/docs/kmm-setup.html
+
+## 3rd party
+
+- Ktor (call RESTFul APIs)
+- Coroutine (asynchronous functions)
+- Sqldelight (persist structured data)
 
 ## Setup
 

@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library") // or kotlin("multiplatform") or any other kotlin plugin
     kotlin("plugin.serialization") version "1.6.10"
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -19,13 +20,20 @@ kotlin {
 
     sourceSets {
         val ktor_version = "1.6.7"
+        val sql_delight_version = "1.5.3"
 
         val commonMain by getting {
             dependencies {
+                // Ktor
                 implementation("io.ktor:ktor-client-core:$ktor_version")
                 implementation("io.ktor:ktor-client-serialization:$ktor_version")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
                 implementation("io.ktor:ktor-client-logging:$ktor_version")
+
+                // Coroutine
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
+
+                // SqlDelight
+                implementation("com.squareup.sqldelight:runtime:$sql_delight_version")
             }
         }
         val commonTest by getting {
@@ -37,6 +45,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktor_version")
+                implementation("com.squareup.sqldelight:android-driver:$sql_delight_version")
             }
         }
         val androidTest by getting {
@@ -55,6 +64,7 @@ kotlin {
             //iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation("io.ktor:ktor-client-ios:$ktor_version")
+                implementation("com.squareup.sqldelight:native-driver:$sql_delight_version")
             }
         }
         val iosX64Test by getting
@@ -75,5 +85,11 @@ android {
     defaultConfig {
         minSdk = 22
         targetSdk = 32
+    }
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "com.duongntb94.database"
     }
 }

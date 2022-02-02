@@ -1,0 +1,21 @@
+CREATE TABLE DBSong (
+trackId INTEGER NOT NULL PRIMARY KEY,
+trackName TEXT NOT NULL,
+artistName TEXT NOT NULL,
+artworkUrl100 TEXT NOT NULL);
+
+insertSong:
+INSERT INTO DBSong(trackId, trackName, artistName, artworkUrl100)
+VALUES(?, ?, ?, ?);
+
+removeAllSongs:
+DELETE FROM DBSong;
+
+selectSongById:
+SELECT * FROM DBSong
+WHERE trackId = ?;
+
+selectAllSong:
+SELECT * FROM DBSong;
+
+
