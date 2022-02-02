@@ -15,7 +15,8 @@ class ItunesStore() {
      * Fetch collection of songs.
      */
     suspend fun getResultCollection(): ResultCollection {
-        resultCollection = itunesService.getResultCollection();
+        // resultCollection = itunesService.getResultCollection();
+        resultCollection = itunesService.getParallelResultCollection(); // call two apis parallel
         return resultCollection;
     }
 
@@ -29,5 +30,4 @@ class ItunesStore() {
         }
         selectedSong = resultCollection.results[id];
     }
-
 }
